@@ -1,16 +1,20 @@
 const readline = require('readline-sync');
 
+startCalculator();
+
 function startCalculator() {
     let moreCalculations = false;
     console.log('Welcome to Calculator!');
     do {
         console.log(performOperation(getInput()));
         moreCalculations = anotherCalculation();
+        if (moreCalculations) {
+          console.clear();
+        }
     } while (moreCalculations);
 }
 
 function anotherCalculation() {
-    console.clear();
     prompt('Would you like to perform another calculation? Enter yes if so, otherwise input anything else.');
     let response = readline.question();
     return getValidBoolean(response);
@@ -42,10 +46,11 @@ function getValidNumber(message) {
 }
 
 function getValidBoolean(response) {
-    if(response.toLowerCase() === yes)
-        return true;
-    else
-        return false;
+    if (response.toLowerCase() === 'yes') {
+      return true;
+    } else {
+      return false;
+      }
 }
 
 function getInput() {
