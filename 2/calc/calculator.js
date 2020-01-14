@@ -2,11 +2,10 @@ const readline = require('readline-sync');
 const messages = require('./config.json');
 
 startCalculator();
-console.log(messages);
 
 function startCalculator() {
     let moreCalculations = false;
-    console.log(messages.messages.greeting);
+    console.log(messages.greeting);
     do {
         console.log(performOperation(getInput()));
         moreCalculations = anotherCalculation();
