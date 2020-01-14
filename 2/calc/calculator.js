@@ -1,7 +1,20 @@
 const readline = require('readline-sync');
 
-console.log('Welcome to Calculator!');
-console.log(performOperation(getInput()));
+function startCalculator() {
+    let moreCalculations = false;
+    console.log('Welcome to Calculator!');
+    do {
+        console.log(performOperation(getInput()));
+        moreCalculations = anotherCalculation();
+    } while (moreCalculations);
+}
+
+function anotherCalculation() {
+    console.clear();
+    prompt('Would you like to perform another calculation? Enter yes if so, otherwise input anything else.');
+    let response = readline.question();
+    return getValidBoolean(response);
+}
 
 function prompt(message) {
     console.log(`=> ${message}`);
@@ -17,7 +30,7 @@ function checkValidity(number) {
   }
 }
 
-function validInput(message) {
+function getValidNumber(message) {
     let haveNumbers = false;
     let number;
     while ( !haveNumbers ) {
@@ -28,11 +41,18 @@ function validInput(message) {
     return number;
 }
 
+function getValidBoolean(response) {
+    if(response.toLowerCase() === yes)
+        return true;
+    else
+        return false;
+}
+
 function getInput() {
 
-    let firstNumber = validInput('What\'s the first number?');
-    let secondNumber = validInput(`The first number is ${firstNumber}. What is the second number?`);
-    let operation = validInput(` What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
+    let firstNumber = getValidNumber('What\'s the first number?');
+    let secondNumber = getValidNumber(`The first number is ${firstNumber}. What is the second number?`);
+    let operation = getValidNumber(` What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
 
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
