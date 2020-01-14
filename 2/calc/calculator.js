@@ -25,6 +25,7 @@ function validInput(message) {
         number = readline.question();
         haveNumbers = checkValidity(number);
       }
+    return number;
 }
 
 function getInput() {
