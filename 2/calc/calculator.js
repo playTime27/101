@@ -14,8 +14,10 @@ function getInput() {
         operation = readline.question();
         if(Number.isFinite(Number(firstNumber)) && Number.isFinite(Number(secondNumber)) && Number.isFinite(Number(operation)))
             haveNumbers=true;
-        else
-            console.log("The provided information is invalid. Please enter it again.")
+        else {
+            	console.clear();
+		console.log("The provided information is invalid. Please enter it again.")
+	}
     }
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
