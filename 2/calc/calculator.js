@@ -7,9 +7,8 @@ function prompt(message) {
     console.log(`=> ${message}`);
 }
 
-function checkValidity(firstNumber, secondNumber, operation) {
-  if (Number.isFinite(Number(firstNumber)) &&
-  Number.isFinite(Number(secondNumber)) && Number.isFinite(Number(operation))) {
+function checkValidity(number) {
+  if (number.trim() !== '' && Number.isFinite(Number(number))) {
    return true;
   } else {
     console.clear();
@@ -18,21 +17,21 @@ function checkValidity(firstNumber, secondNumber, operation) {
   }
 }
 
+function validInput(message) {
+    let haveNumbers = false;
+    let number;
+    while ( !haveNumbers ) {
+        prompt(message);
+        number = readline.question();
+        haveNumbers = checkValidity(number);
+      }
+}
+
 function getInput() {
-  let haveNumbers = false;
-  let firstNumber;
-  let secondNumber;
-  let operation;
-  while ( !haveNumbers ) {
-  console.log('What\'s the first number?');
-  firstNumber = readline.question();
-        prompt(`The first number is ${firstNumber}. What is the second number?`);
-        secondNumber = readline.question();
-        prompt(`The first number is ${firstNumber}. The second number is ${secondNumber}.`);
-        prompt(` What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
-        operation = readline.question();
-        haveNumbers = checkValidity(firstNumber,secondNumber,operation);
-    }
+
+    let firstNumber = validInput('What\'s the first number?');
+    let secondNumber = validInput(`The first number is ${firstNumber}. What is the second number?`);
+    let operation = validInput(` What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
 
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
