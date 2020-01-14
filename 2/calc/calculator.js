@@ -37,16 +37,16 @@ function getInput() {
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
 
-function performOperation(values) {
-    switch (values[2]) {
+function performOperation([firstNumber, secondNumber, operation]) {
+    switch (operation) {
         case 1:
-            return `The result is : ${values[0] + values[1]}`;
+            return `The result is : ${firstNumber + secondNumber}`;
         case 2:
-            return `The result is : ${values[0] - values[1]}`;
+            return `The result is : ${firstNumber - secondNumber}`;
         case 3:
-            return `The result is : ${values[0] * values[1]}`;
+            return `The result is : ${firstNumber * secondNumber}`;
         case 4:
-            return `The result is : ${values[0] / values[1]}`;
+            return `The result is : ${firstNumber / secondNumber}`;
         default:
             return "Invalid operation.";
 
