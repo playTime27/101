@@ -12,8 +12,10 @@ function getInput() {
         secondNumber = readline.question();
         console.log(`The first number is ${firstNumber}. The second number is ${secondNumber}. What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
         operation = readline.question();
-	if(Number.isFinite(Number(firstNumber)) && Number.isFinite(Number(secondNumber)) && Number.isFinite(Number(operation)))
+        if(Number.isFinite(Number(firstNumber)) && Number.isFinite(Number(secondNumber)) && Number.isFinite(Number(operation)))
             haveNumbers=true;
+        else
+            console.log("The provided information is invalid. Please enter it again.")
     }
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
