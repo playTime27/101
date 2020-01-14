@@ -1,4 +1,9 @@
 {
-    "greeting":"Welcome to Calculator!"
+    "greeting":"Welcome to Calculator!",
+    "promptAnother":"Would you like to perform another calculation? Enter yes if so, otherwise input anything else.",
+    "isInvalid":"The provided information is invalid.",
+    "optionQuery":" What operation would you like to perform?\n1) Add \n2) Subtract \n3) Multiply \n4) Divide",
+    "numberQuery": "What's the next number?",
+    "result" : "The result is : "
 }
 

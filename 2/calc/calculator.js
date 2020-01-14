@@ -4,25 +4,25 @@ const messages = require('./config.json');
 startCalculator();
 
 function startCalculator() {
-    let moreCalculations = false;
-    console.log(messages.greeting);
+    let anotherCalculation = false;
+    prompt(messages.greeting);
     do {
-        console.log(performOperation(getInput()));
-        moreCalculations = anotherCalculation();
-        if (moreCalculations) {
+        prompt(performOperation(getInput()));
+        anotherCalculation = getAnotherCalculation();
+        if (anotherCalculation) {
           console.clear();
         }
-    } while (moreCalculations);
+    } while (anotherCalculation);
 }
 
-function anotherCalculation() {
-    prompt('Would you like to perform another calculation? Enter yes if so, otherwise input anything else.');
+function getAnotherCalculation() {
+    prompt(messages.promptAnother);
     let response = readline.question();
     return getValidBoolean(response);
 }
 
 function prompt(message) {
-    console.log(`=> ${message}`);
+    console.log(`$=> ${message}`);
 }
 
 function checkValidity(number) {
@@ -30,7 +30,7 @@ function checkValidity(number) {
    return true;
   } else {
     console.clear();
-    console.log("The provided information is invalid. Please enter it again.");
+    console.log(messages.isInvalid);
     return false;
   }
 }
@@ -56,9 +56,9 @@ function getValidBoolean(response) {
 
 function getInput() {
 
-    let firstNumber = getValidNumber('What\'s the first number?');
-    let secondNumber = getValidNumber(`The first number is ${firstNumber}. What is the second number?`);
-    let operation = getValidNumber(` What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide`);
+    let firstNumber = getValidNumber(messages.numberQuery);
+    let secondNumber = getValidNumber(`The first number is ${firstNumber}. ` + messages.numberQuery );
+    let operation = getValidNumber(messages.optionQuery);
 
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
@@ -66,15 +66,15 @@ function getInput() {
 function performOperation([firstNumber, secondNumber, operation]) {
     switch (operation) {
         case 1:
-            return `The result is : ${firstNumber + secondNumber}`;
+            return  messages.result + `${firstNumber + secondNumber}`;
         case 2:
-            return `The result is : ${firstNumber - secondNumber}`;
+            return messages.result + `${firstNumber - secondNumber}`;
         case 3:
-            return `The result is : ${firstNumber * secondNumber}`;
+            return messages.result + `${firstNumber * secondNumber}`;
         case 4:
-            return `The result is : ${firstNumber / secondNumber}`;
+            return messages.result + `${firstNumber / secondNumber}`;
         default:
-            return "Invalid operation.";
+            return messages.isInvalid;
 
     }
 }
