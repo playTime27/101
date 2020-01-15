@@ -13,7 +13,7 @@ function startCalculator() {
   let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
-  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\t=>Your monthly payment will be $${monthlyPayment.toFixed(2)}`);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n=>Your monthly payment will be $${monthlyPayment.toFixed(2)}`);
 }
 
 function continueProgram() {
