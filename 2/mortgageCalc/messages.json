@@ -3,8 +3,9 @@
         "prompt" : "$=>"
     },
     "loan" : {
-        "amount" : "Please enter your loan amount : ",
-        "duration" : "Please enter your loan duration : ",
-        "apr" : "Please enter your APR : "
-    }
+        "amount" : "Please enter your loan amount : [You only qualify up to 500000].\nDo not put any commas or symbols. The minimum loan is 1000",
+        "duration" : "Please enter your loan duration in years : [ Must be an integer value ]",
+        "apr" : "Please enter your APR [0.00 - 0.99] : "
+    },
+    "result":"Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n"
 }
