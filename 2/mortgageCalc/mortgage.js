@@ -37,7 +37,7 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  if (response.trim() !== "" && Number(response) && reponse >= 1000 && response <= 500000) {
+  if (response.trim() !== "" && Number(response) && response >= 1000 && response <= 500000) {
     return response;
   } else {
       invalidInput();
@@ -55,7 +55,7 @@ function setAPR(response) {
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response) && Number.isInteger(response)) {
+    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response))) {
         return response;
       } else {
           invalidInput();
