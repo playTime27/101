@@ -8,17 +8,16 @@ function startCalculator() {
   let apr = setAPR(readInput(messages.loan.apr));
   let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
-  let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration);
+  let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
   prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\tYour monthly payment will be ${monthlyPayment}`);
 }
 
-function getMonthlyPayment(loanAmount,monthlyLoanDuration) {
-  return Number(loanAmount) * (getMonthlyInterest() / (1 - Math.pow((1 + getMonthlyInterest()),(-Number(monthlyLoanDuration)))));
+function getMonthlyPayment(loanAmount,monthlyLoanDuration,apr) {
+  return Number(loanAmount) * (getMonthlyInterest(apr) / (1 - Math.pow((1 + getMonthlyInterest(apr)),(-Number(monthlyLoanDuration)))));
 }
 
-function getMonthlyInterest(apr, loanAmount) {
-  let monthlyRate = Number(apr) / 12;
-  return monthlyRate * Number(loanAmount);
+function getMonthlyInterest(apr) {
+  return Number(apr) / 12;;
 }
 
 function getMonthlyLoanDuration(yearlyLoanDuration) {
