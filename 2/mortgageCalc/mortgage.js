@@ -12,13 +12,13 @@ function startCalculator() {
   let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
-  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\tYour monthly payment will be ${monthlyPayment}`);
-  prompt(`Total cost :  ${monthlyPayment * monthlyLoanDuration}`);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\t=>Your monthly payment will be ${monthlyPayment}`);
 }
 
 function continueProgram() {
   let input = readInput('Want to try with different rates? [ Enter yes, otherwise enter anything else ]');
-  if (input === 'yes') {
+  if (input.toLowerCase() === 'yes') {
+    console.clear();
     return true;
   } else {
      return false;
@@ -45,8 +45,9 @@ function readInput(message) {
 }
 
 function invalidInput() {
-    console.clear();
-    prompt("The input you entered is not correct. Please try again.");
+  console.clear();
+  prompt(`Current values are `);
+  prompt("The input you entered is not correct. Please try again.");
 }
 
 function setLoanAmount(response) {
@@ -77,7 +78,7 @@ function setLoanDuration(response) {
 }
 
 function prompt(message) {
-    console.log('\x1b[32m%s\x1b[31m%s\x1b[0m', messages.format.prompt, message);
+    console.log('\x1b[31m%s\x1b[32m%s\x1b[0m', messages.format.prompt, message);
     /*
       \x1b[32m code for green %s \x1b[31m character code for red %s
        \x1b[0m reset [ %s is argument ]
