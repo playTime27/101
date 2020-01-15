@@ -14,7 +14,7 @@ function getMonthlyInterest() {
 }
 
 function getLoanDuration() {
-    
+ 
 }
 
 function askForInput(value) {
@@ -49,7 +49,7 @@ function setLoanAmount(response) {
     return response;
   } else {
       invalidInput();
-      askForInput('loanAmount');
+      return askForInput('loanAmount');
   }
 }
 
@@ -58,7 +58,7 @@ function setAPR(response) {
         return response;
       } else {
           invalidInput();
-          askForInput('apr');
+          return askForInput('apr');
       }
 }
 
@@ -67,11 +67,14 @@ function setLoanDuration(response) {
         return response;
       } else {
           invalidInput();
-          askForInput('loanDuration');
+          return askForInput('loanDuration');
       }
 }
 
 function prompt(message) {
-    console.log('\x1b[32m%s\x1b[31m%s\x1b[0m', messages.format.prompt, message); 
-    // \x1b[32m code for green %s \x1b[31m character code for red %s \x1b[0m reset [ %s is argument ]
+    console.log('\x1b[32m%s\x1b[31m%s\x1b[0m', messages.format.prompt, message);
+    /*
+      \x1b[32m code for green %s \x1b[31m character code for red %s
+       \x1b[0m reset [ %s is argument ]
+    */
 }
