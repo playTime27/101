@@ -4,11 +4,10 @@ const messages = require('./messages.json');
 startCalculator();
 
 function startCalculator() {
-  let loanAmount = askForInput('loanAmount');
-  let apr = askForInput('apr');
-  let yearlyLoanDuration = askForInput('loanDuration');
+  let loanAmount = setLoanAmount(readInput(messages.loan.amount));
+  let apr = setAPR(readInput(messages.loan.apr));
+  let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
-  let monthlyInterest = getMonthlyInterest(apr, loanAmount);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration);
   prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\tYour monthly payment will be ${monthlyPayment}`);
 }
@@ -26,22 +25,6 @@ function getMonthlyLoanDuration(yearlyLoanDuration) {
   return yearlyLoanDuration * 12
 }
 
-function askForInput(value) {
-  switch (value) {
-    case "loanAmount":
-        setLoanAmount(readInput(messages.loan.amount));
-      break;
-    case "apr":
-        setAPR(readInput(messages.loan.apr));
-      break;
-    case "loanDuration":
-        setLoanDuration(readInput(messages.loan.duration));
-      break;
-    default:
-      //generalInput?nothing
-  }
-}
-
 function readInput(message) {
   prompt(message);
   let response = readline.question();
@@ -54,11 +37,11 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  if (response.trim() !== "" && Number(response) && response >= 1000 && response <= 500000) {
+  if (response.trim() !== "" && Number(response) && reponse >= 1000 && response <= 500000) {
     return response;
   } else {
       invalidInput();
-      return askForInput('loanAmount');
+      return setLoanAmount(readInput(messages.loan.amount));
   }
 }
 
@@ -67,16 +50,16 @@ function setAPR(response) {
         return response;
       } else {
           invalidInput();
-          return askForInput('apr');
+          return setAPR(readInput(messages.loan.apr));
       }
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response))) {
+    if (response.trim() !== "" && Number(response) && Number.isInteger(response)) {
         return response;
       } else {
           invalidInput();
-          return askForInput('loanDuration');
+          return setLoanDuration(readInput(messages.loan.duration));
       }
 }
 
