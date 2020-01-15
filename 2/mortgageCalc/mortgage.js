@@ -51,7 +51,9 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  if (response.trim() !== "" && Number(response) && response >= 1000 && response <= 500000) {
+  let minLoan = 1000;
+  let maxLoan = 500000;
+  if (response.trim() !== "" && Number(response) && response >= minLoan && response <= maxLoan) {
     return Number(response);
   } else {
       invalidInput();
@@ -60,7 +62,9 @@ function setLoanAmount(response) {
 }
 
 function setAPR(response) {
-    if (response.trim() !== "" && Number(response) && Number(response) >= 0 && Number(response) < 1) {
+  let minApr = 0;
+  let maxApr = 1;
+    if (response.trim() !== "" && Number(response) && Number(response) >= minApr && Number(response) < maxApr) {
         return Number(response);
       } else {
           invalidInput();
@@ -69,7 +73,8 @@ function setAPR(response) {
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= 30) {
+  let maxDuration = 30;
+    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= maxDuration) {
         return Number(response);
       } else {
           invalidInput();
