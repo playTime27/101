@@ -1,9 +1,28 @@
 {
+  "en" : {
     "greeting":"Welcome to Calculator!",
     "promptAnother":"Would you like to perform another calculation? Enter yes if so, otherwise input anything else.",
     "isInvalid":"The provided information is invalid.",
     "optionQuery":" What operation would you like to perform?\n1) Add \n2) Subtract \n3) Multiply \n4) Divide",
     "numberQuery": "What's the next number?",
     "result" : "The result is : "
+  },
+  "jp" : {
+    "greeting":"電卓へようこそ！",
+    "promptAnother":"別の計算を実行しますか？そうであればyesを入力し、そうでなければ何かを入力します。",
+    "isInvalid":"指定された情報は無効です。",
+    "optionQuery":" どの操作を実行しますか？\n1）追加\n2）減算\n3）乗算\n4）除算",
+    "numberQuery": "次の数字は？",
+    "result" : "結果は : "
+  }, 
+  "kr" : {
+    "greeting":"계산기에 오신 것을 환영합니다!",
+    "promptAnother":"다른 계산을 수행 하시겠습니까? 그렇다면 예를 입력하고, 그렇지 않으면 다른 것을 입력하십시오.",
+    "isInvalid":"제공된 정보가 유효하지 않습니다.",
+    "optionQuery":" 어떤 작업을 수행 하시겠습니까? \n1) 더하기 \n2) 빼기 \n3) 곱하기 \n4) 나누기",
+    "numberQuery": "다음 숫자는 무엇입니까?",
+    "result" : "결과는 : "
+  }, 
+  "language":"Select a language : \n1) English \n2) Japanese \n3) Korean"
 }
 

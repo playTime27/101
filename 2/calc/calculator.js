@@ -1,11 +1,31 @@
 const readline = require('readline-sync');
 const messages = require('./config.json');
-
+let language="en";
+getLanguage();
 startCalculator();
+
+function getLanguage() {
+    prompt(messages[language].language);
+    let response = readline.question();
+    language = selectLanguage(response);
+}
+
+function selectLanguage(response) {
+    switch (response) {
+        case 1:
+            return "en";
+        case 2:
+            return "jp";
+        case 3:
+            return "kr";
+        default:
+            return "en";
+    }
+}
 
 function startCalculator() {
     let anotherCalculation = false;
-    prompt(messages.greeting);
+    prompt(messages[language].greeting);
     do {
         prompt(performOperation(getInput()));
         anotherCalculation = getAnotherCalculation();
@@ -16,7 +36,7 @@ function startCalculator() {
 }
 
 function getAnotherCalculation() {
-    prompt(messages.promptAnother);
+    prompt(messages[language].promptAnother);
     let response = readline.question();
     return getValidBoolean(response);
 }
@@ -56,9 +76,9 @@ function getValidBoolean(response) {
 
 function getInput() {
 
-    let firstNumber = getValidNumber(messages.numberQuery);
-    let secondNumber = getValidNumber(`The first number is ${firstNumber}. ` + messages.numberQuery );
-    let operation = getValidNumber(messages.optionQuery);
+    let firstNumber = getValidNumber(messages[language].numberQuery);
+    let secondNumber = getValidNumber(`The first number is ${firstNumber}. ` + messages[language].numberQuery );
+    let operation = getValidNumber(messages[language].optionQuery);
 
     return [Number(firstNumber),Number(secondNumber),Number(operation)];
 }
@@ -66,15 +86,15 @@ function getInput() {
 function performOperation([firstNumber, secondNumber, operation]) {
     switch (operation) {
         case 1:
-            return  messages.result + `${firstNumber + secondNumber}`;
+            return  messages[language].result + `${firstNumber + secondNumber}`;
         case 2:
-            return messages.result + `${firstNumber - secondNumber}`;
+            return messages[language].result + `${firstNumber - secondNumber}`;
         case 3:
-            return messages.result + `${firstNumber * secondNumber}`;
+            return messages[language].result + `${firstNumber * secondNumber}`;
         case 4:
-            return messages.result + `${firstNumber / secondNumber}`;
+            return messages[language].result + `${firstNumber / secondNumber}`;
         default:
-            return messages.isInvalid;
+            return messages[language].isInvalid;
 
     }
 }
