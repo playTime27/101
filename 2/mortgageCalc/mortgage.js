@@ -1,7 +1,10 @@
 const readline = require('readline-sync');
 const messages = require('./messages.json');
 
-startCalculator();
+do {
+  startCalculator();
+}
+while (continueProgram());
 
 function startCalculator() {
   let loanAmount = setLoanAmount(readInput(messages.loan.amount));
@@ -10,18 +13,29 @@ function startCalculator() {
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
   prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\tYour monthly payment will be ${monthlyPayment}`);
+  prompt(`Total cost :  ${monthlyPayment * monthlyLoanDuration}`);
+}
+
+function continueProgram() {
+  let input = readInput('Want to try with different rates? [ Enter yes, otherwise enter anything else ]');
+  if (input === 'yes') {
+    return true;
+  } else {
+     return false;
+  }
 }
 
 function getMonthlyPayment(loanAmount,monthlyLoanDuration,apr) {
-  return Number(loanAmount) * (getMonthlyInterest(apr) / (1 - Math.pow((1 + getMonthlyInterest(apr)),(-Number(monthlyLoanDuration)))));
+  return Number(loanAmount) * (getMonthlyInterest(apr) /
+(1 - Math.pow((1 + getMonthlyInterest(apr)),(-Number(monthlyLoanDuration)))));
 }
 
 function getMonthlyInterest(apr) {
-  return Number(apr) / 12;;
+  return Number(apr) / 12;
 }
 
 function getMonthlyLoanDuration(yearlyLoanDuration) {
-  return Number(yearlyLoanDuration) * 12
+  return Number(yearlyLoanDuration) * 12;
 }
 
 function readInput(message) {
