@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Got Em!</title>
+  <meta name="description" content="lol">
+</head>
+
+<body>
+  <p>Who on this fucking earth would be going right now? YOU ARE!” I believed it enough to where my body said, “he’s not gonna stop</p>
+  <script>
+   let int =prompt('Enter an integer greater than 0');
+   let response = prompt('Enter "s" to compute the sum, or "p" to compute the product.');
+
+   if(response === 's') {
+    console.log(computeSum(int));
+   } else if (response === 'p') {
+    console.log(computeProduct(int));
+   }
+    function computeSum(int) {
+      let sum=0;
+      for (let i =1; i<=int;i++) {
+        sum+=i;
+      }
+      return sum;
+    }
+    function computeProduct(int) {
+      let sum=1;
+      for (let i =1; i<=int;i++) {
+        sum*=i;
+      }
+      return sum;
+    }
+
+  </script>
+</body>
+</html>
