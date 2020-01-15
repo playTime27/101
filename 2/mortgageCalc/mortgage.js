@@ -6,15 +6,24 @@ startCalculator();
 function startCalculator() {
   let loanAmount = askForInput('loanAmount');
   let apr = askForInput('apr');
-  let loanDuration = askForInput('loanDuration');
+  let yearlyLoanDuration = askForInput('loanDuration');
+  let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
+  let monthlyInterest = getMonthlyInterest(apr, loanAmount);
+  let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\nYour monthly payment will be ${monthlyPayment}`);
 }
 
-function getMonthlyInterest() {
-
+function getMonthlyPayment(loanAmount,monthlyLoanDuration) {
+  return loanAmount * (getMonthlyInterest() / (1 - Math.pow((1 + getMonthlyInterest()),(-monthlyLoanDuration))));
 }
 
-function getLoanDuration() {
- 
+function getMonthlyInterest(apr, loanAmount) {
+  let monthlyRate = apr / 12;
+  return monthlyRate * loanAmount;
+}
+
+function getMonthlyLoanDuration(yearlyLoanDuration) {
+  return yearlyLoanDuration * 12
 }
 
 function askForInput(value) {
@@ -29,7 +38,7 @@ function askForInput(value) {
         setLoanDuration(readInput(messages.loan.duration));
       break;
     default:
-      //generalInput?
+      //generalInput?nothing
   }
 }
 
@@ -45,7 +54,7 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  if (response.trim() !== "" && Number(response)) {
+  if (response.trim() !== "" && Number(response) && reponse >= 1000 && response <= 500000) {
     return response;
   } else {
       invalidInput();
@@ -54,7 +63,7 @@ function setLoanAmount(response) {
 }
 
 function setAPR(response) {
-    if (response.trim() !== "" && Number(response)) {
+    if (response.trim() !== "" && Number(response) && response >= 0 && response < 1) {
         return response;
       } else {
           invalidInput();
@@ -63,7 +72,7 @@ function setAPR(response) {
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response)) {
+    if (response.trim() !== "" && Number(response) && Number.isInteger(response)) {
         return response;
       } else {
           invalidInput();
