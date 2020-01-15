@@ -13,16 +13,16 @@ function startCalculator() {
 }
 
 function getMonthlyPayment(loanAmount,monthlyLoanDuration) {
-  return loanAmount * (getMonthlyInterest() / (1 - Math.pow((1 + getMonthlyInterest()),(-monthlyLoanDuration))));
+  return Number(loanAmount) * (getMonthlyInterest() / (1 - Math.pow((1 + getMonthlyInterest()),(-Number(monthlyLoanDuration)))));
 }
 
 function getMonthlyInterest(apr, loanAmount) {
-  let monthlyRate = apr / 12;
-  return monthlyRate * loanAmount;
+  let monthlyRate = Number(apr) / 12;
+  return monthlyRate * Number(loanAmount);
 }
 
 function getMonthlyLoanDuration(yearlyLoanDuration) {
-  return yearlyLoanDuration * 12
+  return Number(yearlyLoanDuration) * 12
 }
 
 function readInput(message) {
@@ -38,7 +38,7 @@ function invalidInput() {
 
 function setLoanAmount(response) {
   if (response.trim() !== "" && Number(response) && response >= 1000 && response <= 500000) {
-    return response;
+    return Number(response);
   } else {
       invalidInput();
       return setLoanAmount(readInput(messages.loan.amount));
@@ -47,7 +47,7 @@ function setLoanAmount(response) {
 
 function setAPR(response) {
     if (response.trim() !== "" && Number(response) && response >= 0 && response < 1) {
-        return response;
+        return Number(response);
       } else {
           invalidInput();
           return setAPR(readInput(messages.loan.apr));
@@ -56,7 +56,7 @@ function setAPR(response) {
 
 function setLoanDuration(response) {
     if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response))) {
-        return response;
+        return Number(response);
       } else {
           invalidInput();
           return setLoanDuration(readInput(messages.loan.duration));
