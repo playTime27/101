@@ -76,5 +76,5 @@ function setLoanDuration(response) {
 }
 
 function prompt(message) {
-    console.log(messages.colorCode, messages.prompt, message);
+    console.log(messages.format.colorCode, messages.format.prompt, message);
 }
