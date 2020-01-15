@@ -4,21 +4,17 @@ const messages = require('./messages.json');
 startCalculator();
 
 function startCalculator() {
-  askForInput('loanAmount');
-  askForInput('apr');
-  askForInput('loanDuration');
+  let loanAmount = askForInput('loanAmount');
+  let apr = askForInput('apr');
+  let loanDuration = askForInput('loanDuration');
 }
 
-function getLoanAmount() {
-
-}
-
-function getAPR() {
+function getMonthlyInterest() {
 
 }
 
 function getLoanDuration() {
-
+    
 }
 
 function askForInput(value) {
@@ -76,5 +72,6 @@ function setLoanDuration(response) {
 }
 
 function prompt(message) {
-    console.log('\x1b[32m%s\x1b[31m%s\x1b[0m', messages.format.prompt, message);
+    console.log('\x1b[32m%s\x1b[31m%s\x1b[0m', messages.format.prompt, message); 
+    // \x1b[32m code for green %s \x1b[31m character code for red %s \x1b[0m reset [ %s is argument ]
 }
