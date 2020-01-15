@@ -1,13 +1,13 @@
 const readline = require('readline-sync');
 const messages = require('./config.json');
-let language="en";
-getLanguage();
+
+let language = getLanguage();
 startCalculator();
 
 function getLanguage() {
-    prompt(messages[language].language);
+    prompt(messages.language);
     let response = readline.question();
-    language = selectLanguage(response);
+    return selectLanguage(Number(response));
 }
 
 function selectLanguage(response) {
