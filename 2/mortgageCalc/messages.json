@@ -4,8 +4,11 @@
     },
     "loan" : {
         "amount" : "Please enter your loan amount : [You only qualify up to 500000].\n\t=> Do not put any commas or symbols. The minimum loan is 1000.",
-        "duration" : "Please enter your loan duration in years : [ Must be an integer value ]",
+        "duration" : "Please enter your loan duration in years : [ Must be an integer value, maximum loan duration is 30 years.]",
         "apr" : "Please enter your APR [0.00 - 0.99] : "
     },
-    "result":"Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n"
+    "result":"Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n",
+    "invalid" : {
+        "error" : "The input you entered is not correct. Please try again."
+    }
 }

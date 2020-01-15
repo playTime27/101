@@ -12,7 +12,7 @@ function startCalculator() {
   let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
-  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\t=>Your monthly payment will be ${monthlyPayment}`);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\t=>Your monthly payment will be $${monthlyPayment.toFixed(2)}`);
 }
 
 function continueProgram() {
@@ -45,9 +45,8 @@ function readInput(message) {
 }
 
 function invalidInput() {
-  console.clear();
-  prompt(`Current values are `);
-  prompt("The input you entered is not correct. Please try again.");
+  //console.clear();
+  prompt(messages.invalid.error);
 }
 
 function setLoanAmount(response) {
@@ -60,7 +59,7 @@ function setLoanAmount(response) {
 }
 
 function setAPR(response) {
-    if (response.trim() !== "" && Number(response) && response >= 0 && response < 1) {
+    if (response.trim() !== "" && Number(response) && Number(response) >= 0 && Number(response) < 1) {
         return Number(response);
       } else {
           invalidInput();
@@ -69,7 +68,7 @@ function setAPR(response) {
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response))) {
+    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= 30) {
         return Number(response);
       } else {
           invalidInput();
