@@ -2,6 +2,7 @@ const readline = require('readline-sync');
 const messages = require('./messages.json');
 
 do {
+  console.clear();
   startCalculator();
 }
 while (continueProgram());
