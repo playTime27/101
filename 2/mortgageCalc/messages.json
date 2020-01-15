@@ -1,0 +1,11 @@
+{
+    "format" : {
+        "colorCode" : "\\x1b[32m%s\\x1b[31m%s\\x1b[0m",
+        "prompt" : "$=>"
+    },
+    "loan" : {
+        "amount" : "Please enter your loan amount : ",
+        "duration" : "Please enter your loan duration : ",
+        "apr" : "Please enter your APR : "
+    }
+}
