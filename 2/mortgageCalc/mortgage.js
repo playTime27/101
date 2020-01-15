@@ -10,7 +10,7 @@ function startCalculator() {
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyInterest = getMonthlyInterest(apr, loanAmount);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration);
-  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\nYour monthly payment will be ${monthlyPayment}`);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n\tYour monthly payment will be ${monthlyPayment}`);
 }
 
 function getMonthlyPayment(loanAmount,monthlyLoanDuration) {
@@ -54,7 +54,7 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  if (response.trim() !== "" && Number(response) && reponse >= 1000 && response <= 500000) {
+  if (response.trim() !== "" && Number(response) && response >= 1000 && response <= 500000) {
     return response;
   } else {
       invalidInput();
@@ -72,7 +72,7 @@ function setAPR(response) {
 }
 
 function setLoanDuration(response) {
-    if (response.trim() !== "" && Number(response) && Number.isInteger(response)) {
+    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response))) {
         return response;
       } else {
           invalidInput();

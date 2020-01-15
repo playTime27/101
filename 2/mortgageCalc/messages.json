@@ -3,7 +3,7 @@
         "prompt" : "$=>"
     },
     "loan" : {
-        "amount" : "Please enter your loan amount : [You only qualify up to 500000].\nDo not put any commas or symbols. The minimum loan is 1000",
+        "amount" : "Please enter your loan amount : [You only qualify up to 500000].\n\t=> Do not put any commas or symbols. The minimum loan is 1000.",
         "duration" : "Please enter your loan duration in years : [ Must be an integer value ]",
         "apr" : "Please enter your APR [0.00 - 0.99] : "
     },
