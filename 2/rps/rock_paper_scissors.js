@@ -32,13 +32,22 @@ function playAgain() {
 }
 
 function runGame() {
-  while (userWinCount < 5 || cpuWinCount < 5) {
+  while (userWinCount < 5 && cpuWinCount < 5) {
     prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
   prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
   printWinner(userChoice, computerChoice);
+  }
+  printMatchWinner();
+}
+
+function printMatchWinner() {
+  if (userWinCount === 5) {
+    return "You won!";
+} else {
+    return "Sorry, the CPU is rigged. You lost!";
   }
 }
 
