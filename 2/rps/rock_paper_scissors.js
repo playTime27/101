@@ -83,8 +83,9 @@ function isChoiceValid(choice) {
 
 function getInput(message) {
   prompt(message);
-  attemptAutoComplete(message);
-  return readline.question();
+  let response = readline.question();
+  let result = attemptAutoComplete(response);
+  return result;
 }
 
 function prompt(message) {
