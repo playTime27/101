@@ -55,6 +55,7 @@ function getUserChoice() {
   let choice = readline.question();
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
+    prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
     choice = readline.question();
   }
   return choice;
