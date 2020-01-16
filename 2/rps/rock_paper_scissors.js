@@ -2,11 +2,11 @@ const readline = require('readline-sync');
 const VALID_CHOICES = ['rock','paper','scissors','spock','lizard'];
 const messages = require('./messages.json');
 const WIN_CONDITIONS = {
-  "spock" : ['scissors', 'rock'],
-  "scissors" : ['paper', 'lizard'],
-  "rock" : ['lizard', 'scissors'],
-  "paper" : ['rock', 'spock'],
-  "lizard" : ['paper', 'spock']
+  spock : ['scissors', 'rock'],
+  scissors : ['paper', 'lizard'],
+  rock : ['lizard', 'scissors'],
+  paper : ['rock', 'spock'],
+  lizard : ['paper', 'spock']
 };
 
 
@@ -32,13 +32,13 @@ function runGame() {
   printWinner(userChoice, computerChoice);
 }
 
-function isWinningChoice(choice) {
-  return WIN_CONDITIONS[choice].includes(choice);
+function isWinningChoice(choice, opposingChoice) {
+  return WIN_CONDITIONS[choice].includes(opposingChoice);
 }
 
 function printWinner(userChoice, computerChoice) {
-  let youWin = isWinningChoice(userChoice);
-  let youLost = isWinningChoice(computerChoice);
+  let youWin = isWinningChoice(userChoice, computerChoice);
+  let youLost = isWinningChoice(computerChoice, userChoice);
 
   if (youWin) {
     prompt('You win!');
