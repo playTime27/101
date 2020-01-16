@@ -65,10 +65,9 @@ function attemptAutoComplete(choice , inputArray) {
 }
 
 function updateConsoleLine() {
-  process.stdout.write("Hello, World");
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
-  process.stdout.write("\n"); // end the line
+  process.stdout.write("spock"); 
 }
 
 function getComputerChoice() {
