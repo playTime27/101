@@ -10,6 +10,7 @@ function playAgain() {
   prompt(messages.playAgain);
   let response = readline.question();
   if (response.toLowerCase() === 'yes') {
+    console.clear();
     return true;
   } else {
     return false;
@@ -30,10 +31,10 @@ function printWinner(userChoice, computerChoice) {
 
   if (youWin) {
     prompt('You win!');
-  } else if(youLost) {
+  } else if (youLost) {
     prompt('You lose!');
   } else {
-    prompt('It\'s a lie!');
+    prompt('It\'s a tie!');
   }
 }
 
@@ -55,6 +56,7 @@ function getUserChoice() {
   let choice = readline.question();
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
+    prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
     choice = readline.question();
   }
   return choice;
@@ -71,7 +73,7 @@ function isChoiceValid(choice) {
 
 function prompt(message) {
   let greenConsoleFG = '\x1b[32m';
-  let redConsoleFG = '\x1b[32m';
+  let redConsoleFG = '\x1b[31m';
   let resetConsoleFG = '\x1b[0m';
   console.log(`${redConsoleFG}`, messages.format.prompt, `${greenConsoleFG}`, message, `${resetConsoleFG}`);
 }
