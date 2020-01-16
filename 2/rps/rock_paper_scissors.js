@@ -82,12 +82,13 @@ function getUserChoice() {
   return choice;
 }
 
-function getPossibleChoices() {
-  return VALID_CHOICES.filter(value => value.substring(0,choice.length).includes(choice));
+function getPossibleChoices(choice) {
+  return VALID_CHOICES.filter(value => 
+    value.substring(0,choice.length).includes(choice));
 }
 
 function choiceAutoComplete(choice) {
-  let possibleChoices = getPossibleChoices();
+  let possibleChoices = getPossibleChoices(choice);
 
   if (possibleChoices.length === 0) {
     return choice;
