@@ -45,9 +45,9 @@ function runGame() {
 
 function printMatchWinner() {
   if (userWinCount === 5) {
-    return "You won!";
+    prompt("You won the match!");
 } else {
-    return "Sorry, the CPU is rigged. You lost!";
+    prompt("Sorry, the CPU is rigged. You lost the match!");
   }
 }
 
