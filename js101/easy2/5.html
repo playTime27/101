@@ -10,7 +10,13 @@
 
 <body>
   <script>
-   
+   function penultimate(inputString) {
+    let stringArray = inputString.split(" ");
+    //undefined if -2 index dne
+    console.log(stringArray[stringArray.length-2]);
+   }
+   penultimate("last word");
+   penultimate("Launch school is great!");
   </script>
 </body>
 </html>
