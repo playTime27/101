@@ -9,6 +9,9 @@ const WIN_CONDITIONS = {
   lizard : ['paper', 'spock']
 };
 
+let userWinCount=0;
+let cpuWinCount=0;
+
 do {
   runGame();
 } while (playAgain());
@@ -19,6 +22,8 @@ function playAgain() {
 
   if (response.toLowerCase() === 'yes') {
     console.clear();
+    userWinCount=0;
+    cpuWinCount=0;
     return true;
   } else {
     return false;
@@ -26,11 +31,14 @@ function playAgain() {
 }
 
 function runGame() {
-  let computerChoice = getComputerChoice();
-  let userChoice = getUserChoice();
+  while(userWinCount < 5 || cpuWinCount < 5) {
+    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
+    let computerChoice = getComputerChoice();
+    let userChoice = getUserChoice();
 
   prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
   printWinner(userChoice, computerChoice);
+  }
 }
 
 function isWinningChoice(choice, opposingChoice) {
@@ -43,8 +51,10 @@ function printWinner(userChoice, computerChoice) {
 
   if (youWin) {
     prompt('You win!');
+    userWinCount++;
   } else if (youLost) {
     prompt('You lose!');
+    cpuWinCount++;
   } else {
     prompt('It\'s a tie!');
   }
