@@ -1,5 +1,6 @@
 const readline = require('readline-sync');
 const VALID_CHOICES = ['rock,paper,scissors'];
+const messages = require('./messages.json');
 
 runGame();
 
@@ -7,14 +8,14 @@ function runGame() {
   let randomChoice = getRandomChoice();
   let userChoice = getUserChoice();
 
-  prompt(`You chose ${choice}, computer chose ${computerChoice}`);
+  prompt(`You chose ${userChoice}, computer chose ${randomChoice}`);
 }
 
 function getUserChoice() {
-  prompt(`Choose one : ${VALID.CHOICES.join(", ")}`);
+  prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
   let choice = readline.question();
   while (!isChoiceValid(choice)) {
-    choice=readline.question();
+    choice = readline.question();
   }
 }
 
