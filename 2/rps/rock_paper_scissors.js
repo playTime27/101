@@ -7,8 +7,7 @@ do {
 } while (playAgain());
 
 function playAgain() {
-  prompt(messages.playAgain);
-  let response = readline.question();
+  let response = getInput(messages.playAgain);
   if (response.toLowerCase() === 'yes') {
     console.clear();
     return true;
@@ -52,8 +51,7 @@ function computerWon(userChoice, computerChoice) {
 }
 
 function getUserChoice() {
-  prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
-  let choice = readline.question();
+  let choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
     prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
@@ -69,6 +67,11 @@ function getComputerChoice() {
 
 function isChoiceValid(choice) {
   return VALID_CHOICES.includes(choice);
+}
+
+function getInput(message) {
+  prompt(message);
+  return readline.question();
 }
 
 function prompt(message) {
