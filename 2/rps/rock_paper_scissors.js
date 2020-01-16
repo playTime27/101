@@ -54,7 +54,6 @@ function getUserChoice() {
   let choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
-    prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
     choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
   }
   return choice;
