@@ -51,12 +51,24 @@ function printWinner(userChoice, computerChoice) {
 
 function getUserChoice() {
   let choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
+  attemptAutoComplete(choice, Object.keys(WIN_CONDITIONS));
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
     prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
     choice = readline.question();
   }
   return choice;
+}
+
+function attemptAutoComplete(choice , inputArray) {
+  updateConsoleLine();
+}
+
+function updateConsoleLine() {
+  process.stdout.write("Hello, World");
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  process.stdout.write("\n"); // end the line
 }
 
 function getComputerChoice() {
