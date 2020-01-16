@@ -2,7 +2,9 @@
 i="0"
 numExercises="12"
 dirName="easy2"
-while [ $i -lt numExercises ]
+while [ $i -lt $numExercises ]
 do
 cp -vi template.html ${dirName}/${i}.html 
+i=$[$i+1]
 done
+
