@@ -8,22 +8,34 @@ do {
 while (continueProgram());
 
 function startCalculator() {
-  let loanAmount = setLoanAmount(readInput(messages.loan.amount));
-  let apr = setAPR(readInput(messages.loan.apr));
-  let yearlyLoanDuration = setLoanDuration(readInput(messages.loan.duration));
+  let loanAmount = getLoanAmount();
+  let apr = getAprAmount();
+  let yearlyLoanDuration = getYearlyLoanDuration();
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
-  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n=>Your monthly payment will be $${monthlyPayment.toFixed(2)}`);
+  prompt(messages.test);
 }
 
 function continueProgram() {
-  let input = readInput('Want to try with different rates? [ Enter yes, otherwise enter anything else ]');
+  let input = readInput(messages.promptContinue);
   if (input.toLowerCase() === 'yes') {
     console.clear();
     return true;
   } else {
      return false;
   }
+}
+
+function getLoanAmount() {
+  return setLoanAmount(readInput(messages.loan.amount));
+}
+
+function getAprAmount() {
+  return setAPR(readInput(messages.loan.apr));
+}
+
+function getYearlyLoanDuration() {
+  return setLoanDuration(readInput(messages.loan.duration));
 }
 
 function getMonthlyPayment(loanAmount,monthlyLoanDuration,apr) {
@@ -51,9 +63,7 @@ function invalidInput() {
 }
 
 function setLoanAmount(response) {
-  let minLoan = 1000;
-  let maxLoan = 500000;
-  if (response.trim() !== "" && Number(response) && response >= minLoan && response <= maxLoan) {
+  if (validLoanAmount(response)) {
     return Number(response);
   } else {
       invalidInput();
@@ -61,10 +71,14 @@ function setLoanAmount(response) {
   }
 }
 
+function validLoanAmount(response) {
+  let minLoan = 1000;
+  let maxLoan = 500000;
+  return response.trim() !== "" && Number(response) && response >= minLoan && response <= maxLoan;
+}
+
 function setAPR(response) {
-  let minApr = 0;
-  let maxApr = 1;
-    if (response.trim() !== "" && Number(response) && Number(response) >= minApr && Number(response) < maxApr) {
+    if (validAprValue(response)) {
         return Number(response);
       } else {
           invalidInput();
@@ -72,14 +86,24 @@ function setAPR(response) {
       }
 }
 
+function validAprValue(response) {
+  let minApr = 0;
+  let maxApr = 1;
+  return response.trim() !== "" && Number(response) && Number(response) >= minApr && Number(response) < maxApr;
+}
+
 function setLoanDuration(response) {
-  let maxDuration = 30;
-    if (response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= maxDuration) {
+    if (validDurationValue(response)) {
         return Number(response);
       } else {
           invalidInput();
           return setLoanDuration(readInput(messages.loan.duration));
       }
+}
+
+function validDurationValue() {
+  let maxDuration = 30;
+  return response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= maxDuration;
 }
 
 function prompt(message) {
