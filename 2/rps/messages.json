@@ -1,5 +1,8 @@
 {
     "format" : {
         "prompt" : "$=>"
+    },
+    "error" : {
+        "invalid": "The information you have provided is invalid."
     }
 }
