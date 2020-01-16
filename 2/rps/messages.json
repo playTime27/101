@@ -4,5 +4,6 @@
     },
     "error" : {
         "invalid": "The information you have provided is invalid."
-    }
+    },
+    "playAgain" : "Enter yes if you would like to play again, otherwise enter anything else."
 }

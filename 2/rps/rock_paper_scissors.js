@@ -2,13 +2,52 @@ const readline = require('readline-sync');
 const VALID_CHOICES = ['rock','paper','scissors'];
 const messages = require('./messages.json');
 
-runGame();
+do {
+  runGame();
+} while (playAgain());
+
+function playAgain() {
+  prompt(messages.playAgain);
+  let response = readline.question();
+  if (response.toLowerCase() === 'yes') {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function runGame() {
-  let randomChoice = getRandomChoice();
+  let computerChoice = getComputerChoice();
   let userChoice = getUserChoice();
 
-  prompt(`You chose ${userChoice}, computer chose ${randomChoice}`);
+  prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
+  printWinner(userChoice, computerChoice);
+}
+
+function printWinner(userChoice, computerChoice) {
+  let youWin = youWon(userChoice, computerChoice);
+  let youLost = computerWon(userChoice, computerChoice);
+
+  if (youWin) {
+    prompt('You win!');
+  } else if(youLost) {
+    prompt('You lose!');
+  } else {
+    prompt('It\'s a lie!');
+  }
+}
+
+
+function youWon(userChoice, computerChoice) {
+  return (userChoice === 'rock' && computerChoice === 'scissors') ||
+  (userChoice === 'paper' && computerChoice === 'rock') ||
+  (userChoice === 'scissors' && computerChoice === 'paper');
+}
+
+function computerWon(userChoice, computerChoice) {
+  return (userChoice === 'rock' && computerChoice === 'paper') ||
+  (userChoice === 'paper' && computerChoice === 'scissors') ||
+  (userChoice === 'scissors' && computerChoice === 'rock');
 }
 
 function getUserChoice() {
@@ -21,7 +60,7 @@ function getUserChoice() {
   return choice;
 }
 
-function getRandomChoice() {
+function getComputerChoice() {
   let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
   return VALID_CHOICES[randomIndex];
 }
