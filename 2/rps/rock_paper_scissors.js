@@ -8,7 +8,8 @@ const WIN_CONDITIONS = {
   paper : ['rock', 'spock'],
   lizard : ['paper', 'spock']
 };
-
+readline.emitKeyPressEvents(process.stdin);
+process.stdin.setRawMode(true);
 
 do {
   runGame();
@@ -65,12 +66,20 @@ function attemptAutoComplete(choice , inputArray) {
 }
 
 function updateConsoleLine(choice) {
-  let greenConsoleFG = '\x1b[32m';
-  let redConsoleFG = '\x1b[31m';
-  let resetConsoleFG = '\x1b[0m';
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
-  process.stdout.write(`${greenConsoleFG}`,"Selected : " + choice, "\n",resetConsoleFG); 
+  process.stdout.write(choice);
+  while(!isEnterKey());
+}
+
+function isEnterKey() {
+  process.stdin.on('keypress', (str,key) => {
+    if (key.enter) {
+      return true;
+    } else {
+    return false;
+    }
+  });
 }
 
 function getComputerChoice() {
