@@ -19,16 +19,19 @@ do {
 
 function playAgain() {
   prompt(messages.playAgain);
-  let response = readline.question();
 
-  if (response.toLowerCase() === 'yes') {
-    console.clear();
-    userWinCount = 0;
-    cpuWinCount = 0;
+  if (readline.question().toLowerCase() === 'yes') {
+    resetGame();
     return true;
   } else {
     return false;
   }
+}
+
+function resetGame() {
+  console.clear();
+  userWinCount = 0;
+  cpuWinCount = 0;
 }
 
 function runGame() {
@@ -79,21 +82,21 @@ function getUserChoice() {
   return choice;
 }
 
-function attemptAutoComplete(choice) {
-  let arrayOfChoices = VALID_CHOICES.filter(value => {
-   value = value.substring(0,choice.length);
-   return value.includes(choice);
-  });
+function getPossibleChoices() {
+  return VALID_CHOICES.filter(value => value.substring(0,choice.length).includes(choice));
+}
 
-  if (arrayOfChoices.length === 0) {
+function choiceAutoComplete(choice) {
+  let possibleChoices = getPossibleChoices();
+
+  if (possibleChoices.length === 0) {
     return choice;
-  } else if (arrayOfChoices.length === 1) {
-    return arrayOfChoices[0];
+  } else if (possibleChoices.length === 1) {
+    return possibleChoices[0];
   } else {
-    prompt(`${messages.multipleOptions} ${choice}. Including ${arrayOfChoices.join(", ")}.`);
+    prompt(`${messages.multipleOptions} ${choice}. Including ${possibleChoices.join(", ")}.`);
     return  choice;
   }
-
 }
 
 function getComputerChoice() {
@@ -108,7 +111,7 @@ function isChoiceValid(choice) {
 function getInput(message) {
   prompt(message);
   let response = readline.question();
-  let result = attemptAutoComplete(response);
+  let result = choiceAutoComplete(response);
   return result;
 }
 
