@@ -64,13 +64,21 @@ function printWinner(userChoice, computerChoice) {
 
   if (youWin) {
     prompt('You win!\n');
-    userWinCount++;
+    updateUserWinCount()
   } else if (youLost) {
     prompt('You lose!\n');
     cpuWinCount++;
   } else {
     prompt('It\'s a tie!\n');
   }
+}
+
+function updateUserWinCount() {
+  userWinCount++;
+}
+
+function updateCpuWinCount() {
+  cpuWinCount++;
 }
 
 function getUserChoice() {
