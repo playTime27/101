@@ -9,9 +9,20 @@
 </head>
 
 <body>
-  <p>Who on this fucking earth would be going right now? YOU ARE!” I believed it enough to where my body said, “he’s not gonna stop</p>
+  
   <script>
-   
+   function asciiValue(string) {
+     let sum=0;
+    for (let i=0;i<string.length;i++) {
+      sum+=string.charCodeAt(i);
+    }
+    return sum;
+   }
+
+   console.log(asciiValue('Four score'));         // 984
+   console.log(asciiValue('Launch School'));      // 1251
+   console.log(asciiValue('a'));                  // 97
+   console.log(asciiValue(''));                   // 0
   </script>
 </body>
 </html>
