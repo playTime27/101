@@ -13,6 +13,7 @@ let userWinCount=0;
 let cpuWinCount=0;
 
 do {
+  prompt('First to 5 wins!');
   runGame();
 } while (playAgain());
 
@@ -32,7 +33,7 @@ function playAgain() {
 
 function runGame() {
   while(userWinCount < 5 || cpuWinCount < 5) {
-    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
+    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}\n\n`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
@@ -74,7 +75,6 @@ function attemptAutoComplete(choice) {
    value=value.substring(0,choice.length);
    return value.includes(choice)
   });
-  console.log(arrayOfChoices);
 
   if(arrayOfChoices.length === 0) {
     return choice;
