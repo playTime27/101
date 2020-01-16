@@ -61,13 +61,16 @@ function getUserChoice() {
 }
 
 function attemptAutoComplete(choice , inputArray) {
-  updateConsoleLine();
+  updateConsoleLine(choice);
 }
 
-function updateConsoleLine() {
+function updateConsoleLine(choice) {
+  let greenConsoleFG = '\x1b[32m';
+  let redConsoleFG = '\x1b[31m';
+  let resetConsoleFG = '\x1b[0m';
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
-  process.stdout.write("spock"); 
+  process.stdout.write(`${greenConsoleFG}`,"Selected : " + choice, "\n",resetConsoleFG); 
 }
 
 function getComputerChoice() {
