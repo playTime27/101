@@ -14,7 +14,9 @@ do {
 } while (playAgain());
 
 function playAgain() {
-  let response = getInput(messages.playAgain);
+  prompt(messages.playAgain);
+  let response = readline.question();
+
   if (response.toLowerCase() === 'yes') {
     console.clear();
     return true;
@@ -53,7 +55,7 @@ function getUserChoice() {
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
     prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
-    choice = readline.question();
+    choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
   }
   return choice;
 }
