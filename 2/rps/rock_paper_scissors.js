@@ -16,8 +16,9 @@ function getUserChoice() {
   let choice = readline.question();
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
-    choice=readline.question();
+    choice = readline.question();
   }
+  return choice;
 }
 
 function getRandomChoice() {
@@ -26,7 +27,7 @@ function getRandomChoice() {
 }
 
 function isChoiceValid(choice) {
-  return [VALID_CHOICES].includes(choice);
+  return VALID_CHOICES.includes(choice);
 }
 
 function prompt(message) {
