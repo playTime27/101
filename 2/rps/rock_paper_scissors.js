@@ -9,8 +9,8 @@ const WIN_CONDITIONS = {
   lizard : ['paper', 'spock']
 };
 
-let userWinCount=0;
-let cpuWinCount=0;
+let userWinCount = 0;
+let cpuWinCount = 0;
 
 do {
   prompt('First to 5 wins!');
@@ -23,8 +23,8 @@ function playAgain() {
 
   if (response.toLowerCase() === 'yes') {
     console.clear();
-    userWinCount=0;
-    cpuWinCount=0;
+    userWinCount = 0;
+    cpuWinCount = 0;
     return true;
   } else {
     return false;
@@ -32,8 +32,8 @@ function playAgain() {
 }
 
 function runGame() {
-  while(userWinCount < 5 || cpuWinCount < 5) {
-    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}\n\n`);
+  while (userWinCount < 5 || cpuWinCount < 5) {
+    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
@@ -51,13 +51,13 @@ function printWinner(userChoice, computerChoice) {
   let youLost = isWinningChoice(computerChoice, userChoice);
 
   if (youWin) {
-    prompt('You win!');
+    prompt('You win!\n');
     userWinCount++;
   } else if (youLost) {
-    prompt('You lose!');
+    prompt('You lose!\n');
     cpuWinCount++;
   } else {
-    prompt('It\'s a tie!');
+    prompt('It\'s a tie!\n');
   }
 }
 
@@ -72,11 +72,11 @@ function getUserChoice() {
 
 function attemptAutoComplete(choice) {
   let arrayOfChoices = VALID_CHOICES.filter(value => {
-   value=value.substring(0,choice.length);
-   return value.includes(choice)
+   value = value.substring(0,choice.length);
+   return value.includes(choice);
   });
 
-  if(arrayOfChoices.length === 0) {
+  if (arrayOfChoices.length === 0) {
     return choice;
   } else if (arrayOfChoices.length === 1) {
     return arrayOfChoices[0];
