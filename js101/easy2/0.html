@@ -10,7 +10,11 @@
 
 <body>
   <script>
-   
+   function  greetings(name,person) {
+    let fullName = name.join(" ");
+    return `Hello, ${fullName}! Nice to have a ${person.title + " " + person.occupation} around.`;
+   }
+   console.log(greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" }));
   </script>
 </body>
 </html>
