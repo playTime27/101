@@ -60,6 +60,7 @@ function getUserChoice() {
 
 function attemptAutoComplete(choice) {
   let arrayOfChoices = VALID_CHOICES.filter(value => value.includes(choice));
+  console.log(arrayOfChoices);
 
   if(arrayOfChoices.length === 0) {
     return choice;
@@ -68,7 +69,7 @@ function attemptAutoComplete(choice) {
   } else {
     return `${messages.multipleOptions} ${choice}. Including ${arrayOfChoices.join(", ")}.` 
   }
-  
+
 }
 
 function getComputerChoice() {
