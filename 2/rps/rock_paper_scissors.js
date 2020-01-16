@@ -50,7 +50,6 @@ function printWinner(userChoice, computerChoice) {
 
 function getUserChoice() {
   let choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
-  attemptAutoComplete(choice, Object.keys(WIN_CONDITIONS));
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
     prompt(`Choose one : ${VALID_CHOICES.join(", ")}`);
@@ -59,8 +58,9 @@ function getUserChoice() {
   return choice;
 }
 
-function attemptAutoComplete(choice , inputArray) {
-  let arrayOfChoices = inputArray.filter(value => value.includes(choice));
+function attemptAutoComplete(choice) {
+  let arrayOfChoices = VALID_CHOICES.filter(value => value.includes(choice));
+
   if(arrayOfChoices.length === 0) {
     return choice;
   } else if (arrayOfChoices.length === 1) {
@@ -68,6 +68,7 @@ function attemptAutoComplete(choice , inputArray) {
   } else {
     return `${messages.multipleOptions} ${choice}. Including ${arrayOfChoices.join(", ")}.` 
   }
+  
 }
 
 function getComputerChoice() {
@@ -81,6 +82,7 @@ function isChoiceValid(choice) {
 
 function getInput(message) {
   prompt(message);
+  attemptAutoComplete(message);
   return readline.question();
 }
 
