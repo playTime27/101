@@ -1,6 +1,14 @@
 const readline = require('readline-sync');
-const VALID_CHOICES = ['rock','paper','scissors'];
+const VALID_CHOICES = ['rock','paper','scissors','spock','lizard'];
 const messages = require('./messages.json');
+const WIN_CONDITIONS = {
+  "spock" : ['scissors', 'rock'],
+  "scissors" : ['paper', 'lizard'],
+  "rock" : ['lizard', 'scissors'],
+  "paper" : ['rock', 'spock'],
+  "lizard" : ['paper', 'spock']
+};
+
 
 do {
   runGame();
@@ -24,9 +32,13 @@ function runGame() {
   printWinner(userChoice, computerChoice);
 }
 
+function isWinningChoice(choice) {
+  return WIN_CONDITIONS[choice].includes(choice);
+}
+
 function printWinner(userChoice, computerChoice) {
-  let youWin = youWon(userChoice, computerChoice);
-  let youLost = computerWon(userChoice, computerChoice);
+  let youWin = isWinningChoice(userChoice);
+  let youLost = isWinningChoice(computerChoice);
 
   if (youWin) {
     prompt('You win!');
@@ -35,19 +47,6 @@ function printWinner(userChoice, computerChoice) {
   } else {
     prompt('It\'s a tie!');
   }
-}
-
-
-function youWon(userChoice, computerChoice) {
-  return (userChoice === 'rock' && computerChoice === 'scissors') ||
-  (userChoice === 'paper' && computerChoice === 'rock') ||
-  (userChoice === 'scissors' && computerChoice === 'paper');
-}
-
-function computerWon(userChoice, computerChoice) {
-  return (userChoice === 'rock' && computerChoice === 'paper') ||
-  (userChoice === 'paper' && computerChoice === 'scissors') ||
-  (userChoice === 'scissors' && computerChoice === 'rock');
 }
 
 function getUserChoice() {
