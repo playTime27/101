@@ -1,5 +1,5 @@
 const readline = require('readline-sync');
-const VALID_CHOICES = ['rock,paper,scissors'];
+const VALID_CHOICES = ['rock','paper','scissors'];
 const messages = require('./messages.json');
 
 runGame();
@@ -30,8 +30,8 @@ function isChoiceValid(choice) {
 }
 
 function prompt(message) {
-  let green = '\x1b[32m code';
-  let red = '\x1b[32m';
-  let reset = '\x1b[0m';
-  console.log(`${red}`, messages.format.prompt, `${green}`, message, `${reset}`);
+  let greenConsoleFG = '\x1b[32m';
+  let redConsoleFG = '\x1b[32m';
+  let resetConsoleFG = '\x1b[0m';
+  console.log(`${redConsoleFG}`, messages.format.prompt, `${greenConsoleFG}`, message, `${resetConsoleFG}`);
 }
