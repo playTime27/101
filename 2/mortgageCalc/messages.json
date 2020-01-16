@@ -3,7 +3,7 @@
         "prompt" : "$=>"
     },
     "loan" : {
-        "amount" : "Please enter your loan amount : [You are only qualified up to 500,000].\n=> Do not put any commas or symbols. The minimum loan is 1,000.",
+        "amount" : "Please enter your loan amount : [You are only qualified up to 500,000].\n$=> Do not put any commas or symbols. The minimum loan is 1,000.",
         "duration" : "Please enter your loan duration in years : [ Must be an integer value, maximum loan duration is 30 years.]",
         "apr" : "Please enter your APR (0.00 - 1) [end points not included) : "
     },
@@ -11,6 +11,5 @@
     "promptContinue":"Want to try with different rates? [ Enter yes, otherwise enter anything else ]",
     "invalid" : {
         "error" : "The input you entered is not correct. Please try again."
-    },
-    "test":"Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n=>Your monthly payment will be $${monthlyPayment.toFixed(2)}"
+    }
 }

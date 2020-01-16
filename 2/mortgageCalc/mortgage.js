@@ -13,7 +13,7 @@ function startCalculator() {
   let yearlyLoanDuration = getYearlyLoanDuration();
   let monthlyLoanDuration = getMonthlyLoanDuration(yearlyLoanDuration);
   let monthlyPayment = getMonthlyPayment(loanAmount,monthlyLoanDuration,apr);
-  prompt(messages.test);
+  prompt(`Provided your loan amount of ${loanAmount}, apr of ${apr}, and loan duration of ${yearlyLoanDuration} years.\n\n$=>Your monthly payment will be $${monthlyPayment.toFixed(2)}`);
 }
 
 function continueProgram() {
@@ -101,7 +101,7 @@ function setLoanDuration(response) {
       }
 }
 
-function validDurationValue() {
+function validDurationValue(response) {
   let maxDuration = 30;
   return response.trim() !== "" && Number(response) && Number.isInteger(Number(response)) && Number(response) <= maxDuration;
 }
