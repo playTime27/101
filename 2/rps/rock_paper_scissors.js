@@ -83,7 +83,7 @@ function getUserChoice() {
 }
 
 function getPossibleChoices(choice) {
-  return VALID_CHOICES.filter(value => 
+  return VALID_CHOICES.filter(value =>
     value.substring(0,choice.length).includes(choice));
 }
 
