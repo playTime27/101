@@ -59,7 +59,10 @@ function getUserChoice() {
 }
 
 function attemptAutoComplete(choice) {
-  let arrayOfChoices = VALID_CHOICES.filter(value => value.includes(choice));
+  let arrayOfChoices = VALID_CHOICES.filter(value => {
+   value=value.substring(0,choice.length);
+   return value.includes(choice)
+  });
   console.log(arrayOfChoices);
 
   if(arrayOfChoices.length === 0) {
@@ -67,7 +70,8 @@ function attemptAutoComplete(choice) {
   } else if (arrayOfChoices.length === 1) {
     return arrayOfChoices[0];
   } else {
-    return `${messages.multipleOptions} ${choice}. Including ${arrayOfChoices.join(", ")}.` 
+    prompt(`${messages.multipleOptions} ${choice}. Including ${arrayOfChoices.join(", ")}.`);
+    return  choice;
   }
 
 }
