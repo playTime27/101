@@ -35,7 +35,7 @@ function runGame() {
     tie : 0
 };
 let winner;
-  while (winCount['user'] <= 5 && winCount['cpu'] <= 5) {
+  while (winCount['user'] < 5 && winCount['cpu'] < 5) {
 
     prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
     let computerChoice = getComputerChoice();
@@ -46,7 +46,7 @@ let winner;
     winCount[winner]++;
     printWinner(winner);
     }
-  printMatchWinner(winner);
+  printMatchWinner(winner, winCount);
 }
 
 function printMatchWinner(winner) {
@@ -55,6 +55,7 @@ function printMatchWinner(winner) {
   } else {
     prompt("Sorry, the CPU is rigged. You lost the match!");
   }
+  prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']} ||| ties : ${winCount['tie']}`);
 }
 
 function isWinningChoice(choice, opposingChoice) {
