@@ -35,7 +35,9 @@ function resetGame() {
 }
 
 function runGame() {
-  while (userWinCount < 5 && cpuWinCount < 5) {
+  while (true) {
+    if(userWinCount < 5 && cpuWinCount < 5)
+      break;
     prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
