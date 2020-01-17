@@ -18,17 +18,17 @@ do {
 function playAgain() {
   let keepGoing = true;
   do {
-  prompt(messages.playAgain);
-  if (readline.question().toLowerCase() === 'yes') {
-    keepGoing = false;
-    return true;
-  } else if (readline.question().toLowerCase() !== 'no') {
-    keepGoing = false;
-    return true;
-  } else {
-    prompt('That is invalid input. Please enter yes to play again or no to stop.');
-    return false;
-  }
+    prompt(messages.playAgain);
+    if (readline.question().toLowerCase() === 'yes') {
+      keepGoing = false;
+      return true;
+    } else if (readline.question().toLowerCase() === 'no') {
+      keepGoing = false;
+      return true;
+    } else {
+      prompt('That is invalid input. Please enter yes to play again or no to stop.');
+      return false;
+    }
   } while (keepGoing);
 }
 
