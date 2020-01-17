@@ -10,7 +10,24 @@
 
 <body>
   <script>
-   
+   console.log(foo());
+
+function foo() {
+  console.log('16');
+}
+
+function foo() {
+  console.log("20");
+  function bar() {
+    console.log('22');
+  }
+
+  bar();
+
+  function bar() {
+    console.log('28');
+  }
+}
   </script>
 </body>
 </html>
