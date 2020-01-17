@@ -34,10 +34,8 @@ function runGame() {
     cpu : 0,
     tie : 0
 };
-
-  let isMatchOver = winCount[user] === 5 || (winCount[cpu] === 5);
   
-  while (true) {
+  while (winCount['user'] === 5 || winCount['cpu'] === 5) {
     if (isMatchOver) {
       break;
     }
@@ -46,7 +44,7 @@ function runGame() {
     let userChoice = getUserChoice();
 
     prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
-    let winner = determineWinner(userChoice, computerChoice)
+    let winner = determineWinner(userChoice, computerChoice);
     winCount[winner]++;
     printWinner(winner);
     }
