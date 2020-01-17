@@ -10,8 +10,6 @@ const WIN_CONDITIONS = {
 };
 
 do {
-  console.clear();
-  prompt('First to 5 wins!');
   runGame();
 } while (playAgain());
 
@@ -38,8 +36,10 @@ function runGame() {
     user : 0,
     cpu : 0,
     tie : 0
-};
-let winner;
+  };
+  let winner;
+  console.clear();
+  prompt('First to 5 wins!');
   while (winCount['user'] < 5 && winCount['cpu'] < 5) {
 
     prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
