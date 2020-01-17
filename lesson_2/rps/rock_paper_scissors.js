@@ -19,10 +19,11 @@ function playAgain() {
   let keepGoing = true;
   do {
     prompt(messages.playAgain);
-    if (readline.question().toLowerCase() === 'yes') {
+    let response = readline.question().toLowerCase();
+    if (response === 'yes') {
       keepGoing = false;
       return true;
-    } else if (readline.question().toLowerCase() === 'no') {
+    } else if (response === 'no') {
       keepGoing = false;
       return true;
     } else {
