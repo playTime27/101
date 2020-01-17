@@ -14,21 +14,17 @@ do {
 } while (playAgain());
 
 function playAgain() {
-  let keepGoing = true;
   do {
     prompt(messages.playAgain);
     let response = readline.question().toLowerCase();
     if (response === 'yes') {
-      keepGoing = false;
       return true;
     } else if (response === 'no') {
-      keepGoing = false;
       return false;
     } else {
       prompt('That is invalid input. Please enter yes to play again or no to stop.');
     }
-  } while (keepGoing);
-  return false;
+  } while (true);
 }
 
 function runGame() {
@@ -38,8 +34,10 @@ function runGame() {
     tie : 0
   };
   let winner;
+
   console.clear();
   prompt('First to 5 wins!');
+  
   while (winCount['user'] < 5 && winCount['cpu'] < 5) {
 
     prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
@@ -50,7 +48,7 @@ function runGame() {
     winner = determineWinner(userChoice, computerChoice);
     winCount[winner]++;
     printWinner(winner);
-    }
+  }
   printMatchWinner(winner, winCount);
 }
 
