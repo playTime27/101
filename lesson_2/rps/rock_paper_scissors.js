@@ -49,7 +49,7 @@ let winner;
   printMatchWinner(winner, winCount);
 }
 
-function printMatchWinner(winner) {
+function printMatchWinner(winner, winCount) {
   if (winner === 'user') {
     prompt("You won the match!");
   } else {
