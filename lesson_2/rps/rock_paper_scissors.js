@@ -34,21 +34,19 @@ function runGame() {
     cpu : 0,
     tie : 0
 };
-  
-  while (winCount['user'] === 5 || winCount['cpu'] === 5) {
-    if (isMatchOver) {
-      break;
-    }
+let winner;
+  while (winCount['user'] !== 5 || winCount['cpu'] !== 5) {
+
     prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
     prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
-    let winner = determineWinner(userChoice, computerChoice);
+    winner = determineWinner(userChoice, computerChoice);
     winCount[winner]++;
     printWinner(winner);
     }
-  printMatchWinner();
+  printMatchWinner(winner);
 }
 
 function printMatchWinner(winner) {
