@@ -27,7 +27,6 @@ function playAgain() {
       return true;
     } else {
       prompt('That is invalid input. Please enter yes to play again or no to stop.');
-      return false;
     }
   } while (keepGoing);
 }
