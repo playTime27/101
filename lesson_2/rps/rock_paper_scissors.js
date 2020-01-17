@@ -35,7 +35,7 @@ function runGame() {
     tie : 0
 };
 let winner;
-  while (winCount['user'] !== 5 || winCount['cpu'] !== 5) {
+  while (winCount['user'] <= 5 && winCount['cpu'] <= 5) {
 
     prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
     let computerChoice = getComputerChoice();
