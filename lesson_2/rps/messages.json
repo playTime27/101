@@ -5,6 +5,7 @@
     "error" : {
         "invalid": "The information you have provided is invalid."
     },
-    "playAgain" : "Enter yes if you would like to play again, otherwise enter anything else.",
-    "multipleOptions": "Please be more specific, there are multiple options beginning with : "
+    "playAgain" : "Please enter yes to play again or enter no to stop.",
+    "multipleOptions": "Please be more specific, there are multiple options beginning with : ",
+    "instructions" : "Choose one of the following [ You can also abbreviate the names assuming the abbreviation is unique ] :"
 }

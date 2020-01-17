@@ -9,10 +9,8 @@ const WIN_CONDITIONS = {
   lizard : ['paper', 'spock']
 };
 
-let userWinCount = 0;
-let cpuWinCount = 0;
-
 do {
+  console.clear();
   prompt('First to 5 wins!');
   runGame();
 } while (playAgain());
@@ -23,36 +21,45 @@ function playAgain() {
   if (readline.question().toLowerCase() === 'yes') {
     resetGame();
     return true;
+  } else if (readline.question().toLowerCase() !== 'no') {
+    prompt('That is invalid input. Please enter yes to play again or no to stop.');
+    return true;
   } else {
     return false;
   }
 }
 
-function resetGame() {
-  console.clear();
-  userWinCount = 0;
-  cpuWinCount = 0;
-}
-
 function runGame() {
+  let winCount = {
+    user : 0,
+    cpu : 0,
+    tie : 0
+  };
+
+  
+  let isMatchOver = winCount[user] === 5 && printMatchWinner('user') || (winCount[cpu] === 5 && printMatchWinner());
+  
+
   while (true) {
-    if (userWinCount === 5 || cpuWinCount === 5) {
+    if (isMatchOver) {
       break;
     }
-    prompt(`userWins : ${userWinCount} |||  cpuWins : ${cpuWinCount}`);
+    prompt(`userWins : ${winCount[user]} |||  cpuWins : ${winCount[cpu]}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
-  prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
-  printWinner(userChoice, computerChoice);
-  }
+    prompt(`You chose ${userChoice}, computer chose ${computerChoice}`);
+    let winner = determineWinner(userChoice, computerChoice)
+    winCount[winner]++;
+    printWinner(winner);
+    }
   printMatchWinner();
 }
 
-function printMatchWinner() {
-  if (userWinCount === 5) {
+function printMatchWinner(winner) {
+  if (winner === 'user') {
     prompt("You won the match!");
-} else {
+  } else {
     prompt("Sorry, the CPU is rigged. You lost the match!");
   }
 }
@@ -61,34 +68,33 @@ function isWinningChoice(choice, opposingChoice) {
   return WIN_CONDITIONS[choice].includes(opposingChoice);
 }
 
-function printWinner(userChoice, computerChoice) {
+function determineWinner(userChoice, computerChoice) {
   let youWin = isWinningChoice(userChoice, computerChoice);
   let youLost = isWinningChoice(computerChoice, userChoice);
+  if (youWin) {
+    return "user";
+  } else if (youLost) {
+    return "cpu";
+  } else {
+    return "tie";
+  }
+}
 
+function printWinner(winner) {
   if (youWin) {
     prompt('You win!\n');
-    updateUserWinCount();
   } else if (youLost) {
     prompt('You lose!\n');
-    updateCpuWinCount();
   } else {
     prompt('It\'s a tie!\n');
   }
 }
 
-function updateUserWinCount() {
-  userWinCount++;
-}
-
-function updateCpuWinCount() {
-  cpuWinCount++;
-}
-
 function getUserChoice() {
-  let choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
+  let choice = getInput(`${messages.instructions} ${VALID_CHOICES.join(", ")}`);
   while (!isChoiceValid(choice)) {
     prompt(messages.error.invalid);
-    choice = getInput(`Choose one : ${VALID_CHOICES.join(", ")}`);
+    choice = getInput(`${messages.instructions} ${VALID_CHOICES.join(", ")}`);
   }
   return choice;
 }
@@ -122,7 +128,7 @@ function isChoiceValid(choice) {
 
 function getInput(message) {
   prompt(message);
-  let response = readline.question();
+  let response = readline.question().toLowerCase();
   let result = choiceAutoComplete(response);
   return result;
 }
