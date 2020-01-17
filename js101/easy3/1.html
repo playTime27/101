@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Got Em!</title>
+  <meta name="description" content="lol">
+</head>
+
+<body>
+  <script>
+   function crunch(arg) {
+    let charArray = arg.split('');
+    let prevChar = charArray[0];
+    let crunched = "";
+    if(prevChar !== undefined) {
+      crunched += prevChar;
+    }
+    for(let i =1; i<charArray.length;i++) {
+      if( charArray[i] !== prevChar ) {
+        crunched += charArray[i];
+      }
+      prevChar = charArray[i];
+    }
+    return crunched;
+   }
+console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
+console.log(crunch('4444abcabccba')        );    // "4abcabcba"
+console.log(crunch('ggggggggggggggg')      );    // "g"
+console.log(crunch('a')                     );    // "a"
+console.log(crunch('')                      );    // ""
+  </script>
+</body>
+</html>
