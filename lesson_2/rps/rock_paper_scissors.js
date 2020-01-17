@@ -29,6 +29,7 @@ function playAgain() {
       prompt('That is invalid input. Please enter yes to play again or no to stop.');
     }
   } while (keepGoing);
+  return false;
 }
 
 function runGame() {
