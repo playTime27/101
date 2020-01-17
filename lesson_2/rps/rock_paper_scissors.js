@@ -21,9 +21,9 @@ function playAgain() {
   if (readline.question().toLowerCase() === 'yes') {
     return true;
   } else if (readline.question().toLowerCase() !== 'no') {
-    prompt('That is invalid input. Please enter yes to play again or no to stop.');
     return true;
   } else {
+    prompt('That is invalid input. Please enter yes to play again or no to stop.');
     return false;
   }
 }
