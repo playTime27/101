@@ -19,7 +19,6 @@ function playAgain() {
   prompt(messages.playAgain);
 
   if (readline.question().toLowerCase() === 'yes') {
-    resetGame();
     return true;
   } else if (readline.question().toLowerCase() !== 'no') {
     prompt('That is invalid input. Please enter yes to play again or no to stop.');
@@ -34,17 +33,15 @@ function runGame() {
     user : 0,
     cpu : 0,
     tie : 0
-  };
+};
 
+  let isMatchOver = winCount[user] === 5 || (winCount[cpu] === 5);
   
-  let isMatchOver = winCount[user] === 5 && printMatchWinner('user') || (winCount[cpu] === 5 && printMatchWinner());
-  
-
   while (true) {
     if (isMatchOver) {
       break;
     }
-    prompt(`userWins : ${winCount[user]} |||  cpuWins : ${winCount[cpu]}`);
+    prompt(`userWins : ${winCount['user']} |||  cpuWins : ${winCount['cpu']}`);
     let computerChoice = getComputerChoice();
     let userChoice = getUserChoice();
 
@@ -81,9 +78,9 @@ function determineWinner(userChoice, computerChoice) {
 }
 
 function printWinner(winner) {
-  if (youWin) {
+  if (winner === 'user') {
     prompt('You win!\n');
-  } else if (youLost) {
+  } else if (winner === 'cpu') {
     prompt('You lose!\n');
   } else {
     prompt('It\'s a tie!\n');
