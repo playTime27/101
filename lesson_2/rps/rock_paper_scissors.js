@@ -16,16 +16,22 @@ do {
 } while (playAgain());
 
 function playAgain() {
+  do {
   prompt(messages.playAgain);
-
+  let keepGoing = true;
   if (readline.question().toLowerCase() === 'yes') {
+    keepGoing = false;
     return true;
   } else if (readline.question().toLowerCase() !== 'no') {
+    keepGoing = false;
     return true;
   } else {
     prompt('That is invalid input. Please enter yes to play again or no to stop.');
     return false;
-  }
+  } 
+  
+  }while (keepGoing);
+  
 }
 
 function runGame() {
