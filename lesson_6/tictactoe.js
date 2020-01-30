@@ -104,14 +104,15 @@ function someoneWon(board) { // board is unused for now; we'll use it later
   return !!detectWinner(board);
 }
 
-
-while (true) {
+function play() {
   let winCount = {
     Player : 0,
     Computer : 0,
     tie : 0
   }
   let matchWin=5;
+while (true) {
+
   let board = initializeBoard();
 
   while (true) {
@@ -148,3 +149,5 @@ while (true) {
 }
 
 prompt('Thanks for playing Tic Tac Toe!');
+}
+play();
