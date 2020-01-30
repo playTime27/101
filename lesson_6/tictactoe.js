@@ -106,6 +106,12 @@ function someoneWon(board) { // board is unused for now; we'll use it later
 
 
 while (true) {
+  let winCount = {
+    Player : 0,
+    Computer : 0,
+    tie : 0
+  }
+  let matchWin=5;
   let board = initializeBoard();
 
   while (true) {
@@ -122,8 +128,18 @@ while (true) {
 
   if (someoneWon(board)) {
     prompt(`${detectWinner(board)} won!`);
+    winCount[detectWinner(board)]++;
   } else {
     prompt("It's a tie!");
+    winCount[detectWinner(board)]++;
+  }
+
+  if(winCount['Player'] === matchWin) { 
+    prompt("Player won the match!");
+    winCount['Player'] = 0; winCount['Computer'] = 0; winCount['tie'] =0;
+  } else if (winCount['Computer'] === matchWin) {
+    prompt("Computer won the match!");
+    winCount['Player'] = 0; winCount['Computer'] = 0; winCount['tie'] =0;
   }
 
   prompt('Play again? (y or n)');
