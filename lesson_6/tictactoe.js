@@ -94,7 +94,7 @@ function prompt(message) {
   let greenConsoleFG = '\x1b[32m';
   let redConsoleFG = '\x1b[31m';
   let resetConsoleFG = '\x1b[0m';
-  console.log(`${redConsoleFG}${messages.format.prompt}`, `${greenConsoleFG}`, message, `${resetConsoleFG}`);
+  console.log(`${redConsoleFG}$=>`, `${greenConsoleFG}`, message, `${resetConsoleFG}`);
 }
 function boardFull(board) {
   return emptySquares(board).length === 0;
