@@ -73,7 +73,7 @@ function joinOr(emptySquaresArray, delimitter=" ", word="or") {
   if ( length === 2) {
     return emptySquaresArray[0] + delimitter + emptySquaresArray[1];
   } else {
-    let endOfStr = delimitter + " " + word + " " + emptySquaresArray[length-1];
+    let endOfStr = delimitter + word + " " + emptySquaresArray[length-1];
     return emptySquaresArray.join(delimitter).slice(0,length) + endOfStr;
   }
 }
