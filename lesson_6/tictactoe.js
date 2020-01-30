@@ -116,7 +116,7 @@ while (true) {
 
   while (true) {
     displayBoard(board);
-
+    prompt(`Player ${winCount['Player']} || Computer ${winCount['Computer']}`);
     playerChoosesSquare(board);
     if (someoneWon(board) || boardFull(board)) break;
 
