@@ -68,10 +68,20 @@ function computerChoosesSquare(board) {
   board[square] = COMPUTER_MARKER;
 }
 
+function joinOr(emptySquaresArray, delimitter=" ", word="or") {
+  let length = emptySquaresArray.length;
+  if ( length === 2) {
+    return emptySquaresArray[0] + delimitter + emptySquaresArray[1];
+  } else {
+    let endOfStr = delimitter + " " + word + " " + emptySquaresArray[length-1];
+    return emptySquaresArray.join(delimitter).slice(0,length) + endOfStr;
+  }
+}
+
 function playerChoosesSquare(board) {
   let square;
   while (true) {
-    prompt(`Choose a square ${emptySquares(board).join(', ')}:`);
+    prompt(`Choose a square ${joinOr(emptySquares(board))}:`);
     square = readline.question().trim(); // input trimmed to allow spaces in input
     if (emptySquares(board).includes(square)) break; 
       prompt("Sorry, that's not a valid choice.");
