@@ -1,4 +1,4 @@
-import readline from 'readline-sync';
+const readline = require('readline-sync');
 const INITIAL_MARKER = ' ';
 const HUMAN_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
