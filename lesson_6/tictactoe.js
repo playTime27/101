@@ -2,6 +2,7 @@ const readline = require('readline-sync');
 const INITIAL_MARKER = ' ';
 const HUMAN_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
+const FIRST_PLAYER = 'Computer';
 const winningLines = [
   [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
   [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
@@ -23,7 +24,9 @@ function displayBoard(board) {
   console.log(`  ${board['7']}  |  ${board['8']}  |  ${board['9']}`);
   console.log('     |     |');
   console.log('');
+
 }
+
 function initializeBoard() {
   let board = {};
 
@@ -137,6 +140,18 @@ function someoneWon(board) { // board is unused for now; we'll use it later
   return !!detectWinner(board);
 }
 
+function chooseSquare(board, currentPlayer) {
+  if(currentPlayer === 'player') {
+    playerChoosesSquare(board);
+  } else {
+    computerChoosesSquare(board);
+  }
+}
+
+function alternatePlayer(currentPlayer) {
+  return currentPlayer === 'player' ? 'computer' : 'player';
+}
+
 function play() {
   let winCount = {
     Player : 0,
@@ -144,17 +159,18 @@ function play() {
     tie : 0
   }
   let matchWin=5;
-while (true) {
+  let next=true;
+while (next) {
 
   let board = initializeBoard();
 
+  displayBoard(board);
+  prompt(`Player ${winCount['Player']} || Computer ${winCount['Computer']}`);
+  let currentPlayer = FIRST_PLAYER;
   while (true) {
     displayBoard(board);
-    prompt(`Player ${winCount['Player']} || Computer ${winCount['Computer']}`);
-    playerChoosesSquare(board);
-    if (someoneWon(board) || boardFull(board)) break;
-
-    computerChoosesSquare(board);
+    chooseSquare(board, currentPlayer);
+    currentPlayer = alternatePlayer(currentPlayer);
     if (someoneWon(board) || boardFull(board)) break;
   }
 
@@ -171,14 +187,25 @@ while (true) {
   if(winCount['Player'] === matchWin) { 
     prompt("Player won the match!");
     winCount['Player'] = 0; winCount['Computer'] = 0; winCount['tie'] =0;
+    prompt('Play again? (y or n)');
+    let answer = readline.question().toLowerCase()[0];
+    if (answer !== 'y') break;
   } else if (winCount['Computer'] === matchWin) {
     prompt("Computer won the match!");
     winCount['Player'] = 0; winCount['Computer'] = 0; winCount['tie'] =0;
+   while(true) {
+    prompt('Play again? (y or n)');
+    let answer = readline.question().toLowerCase()[0];
+    if (answer === 'n') { 
+      next=false; 
+      break;
+    } else if ( answer === 'y') {
+      next=true;
+      break;
+      }
+    }
   }
 
-  prompt('Play again? (y or n)');
-  let answer = readline.question().toLowerCase()[0];
-  if (answer !== 'y') break;
 }
 
 prompt('Thanks for playing Tic Tac Toe!');
