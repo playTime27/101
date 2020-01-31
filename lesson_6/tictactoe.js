@@ -81,7 +81,7 @@ function computerChoosesSquare(board) {
     index = determineIfNextMoveWins(board, 'computer');
   } else if ( determineIfNextMoveWins(board, 'human') ) {
     index = determineIfNextMoveWins(board, 'human');
-  } else if (emptySquares.includes(5)) {
+  } else if (emptySquares(board).includes(5)) {
     index = 5;
   } else {
     let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
