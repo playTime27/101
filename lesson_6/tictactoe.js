@@ -40,20 +40,21 @@ function emptySquares(board) {
 
 function determineIfNextMoveWins(board, player) {
   let marker = ( player === 'human' ) ? HUMAN_MARKER : COMPUTER_MARKER;
+  let antiMarker = ( player === 'human' ) ? COMPUTER_MARKER : HUMAN_MARKER;
   for ( let i =0; i< winningLines.length; i++ ) {
     let count = 0;
     let numSeen = [];
     for ( let j = 0; j < winningLines[i].length; j++ ) {
       if( board[winningLines[i][j]] === marker ) {
         count++;
-        numSeen.push(winningLines[i][j]);
+        numSeen.push(j);
         if( count >= 2 ) {
-          if( !numSeen.includes(0) )
-            return winningLines[i,0];
-          else if ( !numSeen.includes(1))
-            return winningLines[i,1];
-          else
-            return winningLines[i,2];
+          if( !numSeen.includes(0) && board[winningLines[i][0]] === INITIAL_MARKER)
+            return winningLines[i][0];
+          else if ( !numSeen.includes(1) && board[winningLines[i][1]] === INITIAL_MARKER)
+            return winningLines[i][1];
+          else if( !numSeen.includes(2) && board[winningLines[i][2]] === INITIAL_MARKER)
+            return winningLines[i][2];
         }
       }
     }
@@ -84,16 +85,14 @@ function detectWinner(board) {
 }
 
 function computerChoosesSquare(board) {
-  let index = null;
+  let index = undefined;
   let preventWin = determineIfNextMoveWins(board, 'human');
-  prompt(`${preventWin}`);
   let goForWin = determineIfNextMoveWins(board, 'computer');
-  prompt(`${goForWin}`);
   if ( goForWin ) {
     index = goForWin;
   } else if ( preventWin ) {
     index = preventWin;
-  } else if (emptySquares(board).includes(5)) {
+  } else if (emptySquares(board).includes('5')) {
     index = 5;
   } else {
     let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
