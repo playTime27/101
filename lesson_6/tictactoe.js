@@ -162,10 +162,10 @@ while (true) {
   displayBoard(board);
 
   if (someoneWon(board)) {
-    prompt(`${detectWinner(board)} won!`);
+    readline.question(`${detectWinner(board)} won!`);
     winCount[detectWinner(board)]++;
   } else {
-    prompt("It's a tie!");
+    readline.question("It's a tie!");
     winCount[detectWinner(board)]++;
   }
 
