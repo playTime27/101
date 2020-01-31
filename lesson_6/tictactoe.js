@@ -86,9 +86,9 @@ function detectWinner(board) {
 function computerChoosesSquare(board) {
   let index = null;
   let preventWin = determineIfNextMoveWins(board, 'human');
-  console.log(preventWin);
+  prompt(`${preventWin}`);
   let goForWin = determineIfNextMoveWins(board, 'computer');
-  console.log(goForWin);
+  prompt(`${goForWin}`);
   if ( goForWin ) {
     index = goForWin;
   } else if ( preventWin ) {
