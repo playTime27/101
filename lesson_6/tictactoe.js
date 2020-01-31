@@ -41,6 +41,7 @@ function emptySquares(board) {
 function determineIfNextMoveWins(board, player) {
   let marker = ( player === 'human' ) ? HUMAN_MARKER : COMPUTER_MARKER;
   for ( let i =0; i< winningLines.length; i++ ) {
+    let count = 0;
     for ( let j = 0; j < winningLines[i].length; j++ ) {
       if( board[winningLines[i][j]] === marker ) {
         if( count >= 2) {
