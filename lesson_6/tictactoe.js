@@ -2,6 +2,11 @@ const readline = require('readline-sync');
 const INITIAL_MARKER = ' ';
 const HUMAN_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
+const winningLines = [
+  [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
+  [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
+  [1, 5, 9], [3, 5, 7]             // diagonals
+];
 function displayBoard(board) {
   console.clear();
   console.log(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}`);
@@ -33,13 +38,21 @@ function emptySquares(board) {
   return Object.keys(board).filter(key => board[key] === INITIAL_MARKER);
 }
 
-function detectWinner(board) {
-  let winningLines = [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
-    [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
-    [1, 5, 9], [3, 5, 7]             // diagonals
-  ];
+function determineIfNextMoveWins(board, player) {
+  let marker = ( player === human ) ? HUMAN_MARKER : COMPUTER_MARKER;
+  for ( let i =0; i< winningLines.length; i++ ) {
+    for ( let j = 0; j < winningLines[i].length; j++ ) {
+      if( board[winningLines[i][j]] === marker ) {
+        if( count >= 2) {
+          return winningLines[i,j];
+        }
+      }
+    }
+  }
+  return false;
+}
 
+function detectWinner(board) {
   for (let line = 0; line < winningLines.length; line++) {
     let [sq1, sq2, sq3] = winningLines[line];
 
@@ -62,10 +75,18 @@ function detectWinner(board) {
 }
 
 function computerChoosesSquare(board) {
-  let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
-
-  let square = emptySquares(board)[randomIndex];
-  board[square] = COMPUTER_MARKER;
+  let index = null;
+  if ( determineIfNextMoveWins(board, 'computer') ) {
+    index = determineIfNextMoveWins(board, 'computer');
+  } else if ( determineIfNextMoveWins(board, 'human') ) {
+    index = determineIfNextMoveWins(board, 'human');
+  } else if (emptySquares.includes(5)) {
+    index = 5;
+  } else {
+    let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
+    index = emptySquares(board)[randomIndex];
+  }
+  board[index] = COMPUTER_MARKER;
 }
 
 function joinOr(emptySquaresArray, delimitter=" ", word="or") {
