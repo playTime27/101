@@ -44,6 +44,7 @@ function determineIfNextMoveWins(board, player) {
     let count = 0;
     for ( let j = 0; j < winningLines[i].length; j++ ) {
       if( board[winningLines[i][j]] === marker ) {
+        count++;
         if( count >= 2) {
           return winningLines[i,j];
         }
